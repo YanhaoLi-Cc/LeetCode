@@ -7,16 +7,13 @@
 # @lc code=start
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        pre_max = nums[0]
-        pre_min = nums[0]
-        ansMax = nums[0]
-        for i in nums[1:]:
-            cur_max = max(pre_max * i, pre_min * i, i)
-            cur_min = min(pre_max * i, pre_min * i, i)
-            ansMax = max(ansMax, cur_max)
-            pre_max = cur_max
-            pre_min = cur_min
-        return ansMax
-            
+        dp_max = [0] * len(nums)
+        dp_min = [0] * len(nums)
+        dp_max[0] = nums[0]
+        dp_min[0] = nums[0]
+        for i in range(1, len(nums)):
+            dp_max[i] = max(dp_max[i - 1] * nums[i], dp_min[i - 1] * nums[i], nums[i])
+            dp_min[i] = min(dp_max[i - 1] * nums[i], dp_min[i - 1] * nums[i], nums[i])
+        return max(dp_max)
 # @lc code=end
 
