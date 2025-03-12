@@ -7,13 +7,6 @@
 # @lc code=start
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-    # Solution 1
-        # for row in matrix:
-        #     for num in row:
-        #         if num == target:
-        #             return True
-        # return False
-    # Solution 2
         m, n = len(matrix), len(matrix[0])
         x, y = 0, n - 1
         while x < m and y >= 0:
